@@ -10,7 +10,7 @@ import java.util.Optional;
 
 public interface TradeService{
 
-    public TradeValidityStatus getTradeValidityStatus(Trade Trade);
+    public TradeValidityStatus getTradeValidityStatus(Trade trade);
 
     public void saveTrade(Trade trade);
 
