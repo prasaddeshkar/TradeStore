@@ -29,7 +29,7 @@ class TradeServiceImplementationTest {
         Trade newtrade= new Trade("T" + Math.random(),3,"CP-2", "B1", LocalDate.of(2024, 10,10),
                 LocalDate.now(), 'N');
 
-        assertEquals(true, tradeService.isValidVersion(newtrade,null));
+        assertTrue(tradeService.isValidVersion(newtrade, null));
     }
     @Test
     void isValidVersion_true() {
@@ -37,7 +37,21 @@ class TradeServiceImplementationTest {
                 LocalDate.now(), 'N');
         Trade newtrade= new Trade("T" + Math.random(),3,"CP-2", "B1", LocalDate.of(2024, 10,10),
                 LocalDate.now(), 'N');
-        assertEquals(true , tradeService.isValidVersion(newtrade, oldTrade));
+        assertTrue(tradeService.isValidVersion(newtrade, oldTrade));
+    }
+
+    @Test
+    void isValidTradeID_true() {
+        Trade trade= new Trade("T" + Math.random(),2,"CP-2", "B1", LocalDate.of(2024, 10,10),
+                LocalDate.now(), 'N');
+        assertTrue(tradeService.validateTadeName(trade.getTradeId()));
+    }
+
+    @Test
+    void isValidTradeID_false() {
+        Trade trade= new Trade("X" + Math.random(),2,"CP-2", "B1", LocalDate.of(2024, 10,10),
+                LocalDate.now(), 'N');
+        assertFalse(tradeService.validateTadeName(trade.getTradeId()));
     }
 
     @Test
@@ -46,21 +60,21 @@ class TradeServiceImplementationTest {
                 LocalDate.now(), 'N');
         Trade newtrade= new Trade("T" + Math.random(),2,"CP-2", "B1", LocalDate.of(2024, 10,10),
                 LocalDate.now(), 'N');
-        assertEquals(false , tradeService.isValidVersion(newtrade, oldTrade));
+        assertFalse(tradeService.isValidVersion(newtrade, oldTrade));
     }
 
     @Test
     void isMaturityDateValid_true() {
         Trade trade= new Trade("T" + Math.random(),2,"CP-2", "B1", LocalDate.of(2024, 10,10),
                 LocalDate.now(), 'N');
-        assertEquals(true, tradeService.isMaturityDateValid(trade));
+        assertTrue(tradeService.isMaturityDateValid(trade));
     }
 
     @Test
     void isMaturityDateValid_false() {
         Trade trade= new Trade("T" + Math.random(),2,"CP-2", "B1", LocalDate.of(2021, 10,10),
                 LocalDate.now(), 'N');
-        assertEquals(false, tradeService.isMaturityDateValid(trade));
+        assertFalse(tradeService.isMaturityDateValid(trade));
     }
 
     @Test

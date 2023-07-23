@@ -10,15 +10,15 @@ import java.util.Optional;
 
 public interface TradeService{
 
-    public TradeValidityStatus getTradeValidityStatus(Trade trade);
+    TradeValidityStatus getTradeValidityStatus(Trade trade);
 
-    public void saveTrade(Trade trade);
+    void saveTrade(Trade trade);
 
-    public List<Trade> findAll();
+    List<Trade> findAll();
 
-    public Optional<Trade> getTrade(String tradeId);
+    Optional<Trade> getTrade(String tradeId);
 
-    public void setTradeAsExpire();
+    void setTradeAsExpire();
 
     default boolean isValidVersion (Trade newTrade, Trade oldTrade){
         if(oldTrade==null){
@@ -32,6 +32,10 @@ public interface TradeService{
     default boolean isMaturityDateValid(Trade trade){
         return trade.getMaturityDate().isAfter(LocalDate.now());
 
+    }
+
+    default boolean validateTadeName(String tradeId) {
+        return tradeId.startsWith("T");
     }
 
 }

@@ -29,9 +29,13 @@ public class TradeServiceImplementation implements TradeService {
             return TradeValidityStatus.INVALID_MATURITY_DATE;
         } else if (! isValidVersion(trade,getPreviousTrade(trade.getTradeId()))) {
             return  TradeValidityStatus.OBSELETE_VERSION;
-        } else
+        } else if(! validateTadeName(trade.getTradeId())){
+            return TradeValidityStatus.INVALID_ID_FORMAT;
+        }
+        else
             return TradeValidityStatus.OK;
     }
+
 
 
 

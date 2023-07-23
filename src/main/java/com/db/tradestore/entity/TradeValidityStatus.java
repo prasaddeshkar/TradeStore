@@ -5,12 +5,13 @@ public enum TradeValidityStatus {
 
     OK("Valid Trade"),
     INVALID_MATURITY_DATE("Invalid Maturity Date"),
-    OBSELETE_VERSION("Old Version, newer version exists");
+    OBSELETE_VERSION("Old Version, newer version exists"),
+    INVALID_ID_FORMAT("Invalid Trade ID format, Trade ID should start with 'T'");
 
 
     private final String message;
 
-    private TradeValidityStatus(String message) {
+    TradeValidityStatus(String message) {
         this.message = message;
     }
 
